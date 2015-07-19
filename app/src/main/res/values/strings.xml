@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">bonAppetit</string>
+    <string name="tab0">My recipes</string>
+    <string name="tab1">My Ingredients</string>
+    <string name="tab2">Let\'s go shopping</string>
+    <string name="saveIngredient">Save an ingredient</string>
+    <string name="chooseRecipes">Choose your recipes to buy</string>
+    <string name="textButtonCreateRecipe">Create a new recipe</string>
+    <string name="ButtonValidateIngredient">Save</string>
+    <string name="ButtonChooseIngredients">choose ingredients</string>
+    <string name="AlertDialogDeleteRecipeTitle">Delete recipe</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="price_choice">
+        <item>Cheap</item>
+        <item>Medium</item>
+        <item>Expensive</item>
+    </string-array>
+
+    <string name="cheapPrice">Price: Cheap</string>
+    <string name="MediumPrice">Price: Medium</string>
+    <string name="ExpensivePrice">Price: Expensive</string>
+
+    <string-array name="dish_type">
+        <item>Starter</item>
+        <item>Main dish</item>
+        <item>Dessert</item>
+    </string-array>
+
+    <string name="dialog_no_title">Please enter a recipe Title</string>
+    <string name="dialog_Title">No Title</string>
+    <string name="title_activity_video">VideoActivity</string>
+    <string name="title_activity_pager">navigation</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    
+    <string name="displayVideoButton">Display the video</string>
+
+</resources>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="4px" >
+
+    <EditText
+        android:id="@+id/editTextNameRecipeCreate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_weight="0"
+        android:autoText="false"
+        android:hint="Recipe name">
+
+        <requestFocus />
+    </EditText>
+    
+        <ImageButton
+        android:id="@+id/buttonPicture"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_weight="0"
+        android:src="@drawable/ic_action_new_picture"/>
+
+    <Spinner
+        android:id="@+id/spinnerPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0" />
+
+    <Button
+        android:id="@+id/buttonChooseIngredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ButtonChooseIngredients"
+        android:layout_weight="0"
+        android:background="@drawable/button_select"
+        style="@style/button_select"/>
+
+    <TextView
+        android:id="@+id/textViewRecipesDisplayed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="" />
+
+    <EditText
+        android:id="@+id/editTextRecipeDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_weight="1"
+        android:inputType="textMultiLine"
+        android:hint="Description" />
+
+    <Button
+        android:id="@+id/buttonValidCreate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="validate"
+        android:layout_weight="0"
+        android:background="@drawable/bottom_button"
+        style="@style/bottom_button"/>
+
+</LinearLayout>
