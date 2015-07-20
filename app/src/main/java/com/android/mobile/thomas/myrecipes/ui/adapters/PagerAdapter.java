@@ -30,6 +30,11 @@ public class PagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
+    public CharSequence getPageTitle(int position) {
+        return "Item " + position;
+    }
+
+    @Override
     public Fragment getItem(int position) {
         switch (position) {
             case 0:

@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 
 import com.android.mobile.thomas.myrecipes.R;
+import com.android.mobile.thomas.myrecipes.custom.views.SlidingTabLayout;
 import com.android.mobile.thomas.myrecipes.ui.adapters.PagerAdapter;
 
 /**
@@ -28,6 +29,9 @@ public class NavigationHomeActivity extends FragmentActivity {
 
         mPager = (ViewPager)findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
+
+        SlidingTabLayout slidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+        slidingTabLayout.setViewPager(mPager);
 
     }
 }
