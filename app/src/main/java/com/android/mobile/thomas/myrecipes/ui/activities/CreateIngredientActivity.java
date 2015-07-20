@@ -53,7 +53,7 @@ public class CreateIngredientActivity extends Activity {
                 persistence.insert(ingredient);
 
                 // TODO use fragment manager to display the right fragment in the main activity
-                Intent intent = new Intent(CreateIngredientActivity.this, MainActivity.class);
+                Intent intent = new Intent(CreateIngredientActivity.this, NavigationHomeActivity.class);
                 startActivity(intent);
 
             }

@@ -115,7 +115,7 @@ public class CreateRecipesActivity extends Activity {
                     RecipePersistence persistence = new RecipePersistence(getApplicationContext());
                     persistence.insert(recipe);
 
-                    Intent intent = new Intent(CreateRecipesActivity.this, MainActivity.class);
+                    Intent intent = new Intent(CreateRecipesActivity.this, NavigationHomeActivity.class);
                     startActivity(intent);
                 }
 

@@ -7,19 +7,19 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 
 import com.android.mobile.thomas.myrecipes.R;
-import com.android.mobile.thomas.myrecipes.ui.adapters.AppSectionsPagerAdapter;
+
 
 /**
  * Created by Thomas on 19/07/2015.
  */
-public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
+/*public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 
-	/**
+	*//**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide fragments for each of the
 	 * three primary sections of the app. We use a {@link android.support.v4.app.FragmentPagerAdapter}
 	 * derivative, which will keep every loaded fragment in memory. If this becomes too memory
 	 * intensive, it may be best to switch to a {@link android.support.v4.app.FragmentStatePagerAdapter}.
-	 */
+	 *//*
 	AppSectionsPagerAdapter mAppSectionsPagerAdapter;
 	ViewPager mViewPager;
 
@@ -30,7 +30,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 		setContentView(R.layout.activity_main);
 
-		/*
+		*//*
 		// Create the adapter that will return a fragment for each of the three primary sections
 		// of the app.
 		mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager(), this);
@@ -66,7 +66,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 					.setText(mAppSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
-		*/
+		*//*
 	}
 
 	@Override
@@ -87,4 +87,4 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 	}
 
-}
+}*/

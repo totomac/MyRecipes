@@ -1,8 +1,9 @@
 package com.android.mobile.thomas.myrecipes.ui.fragments;
 
-import android.app.Fragment;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.android.mobile.thomas.myrecipes.ui.adapters.ShoppingAdapter;
 /**
  * Created by Thomas on 19/07/2015.
  */
+@SuppressLint("ValidFragment")
 public class ShoppingFragment extends Fragment {
 
     Context mContext;
@@ -24,6 +26,11 @@ public class ShoppingFragment extends Fragment {
     private ListView mListView;
 
 
+    //TODO make it a singleton
+    public static ShoppingFragment newInstance(Context context) {
+        return new ShoppingFragment(context);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -31,7 +38,7 @@ public class ShoppingFragment extends Fragment {
 
     }
 
-    public ShoppingFragment() {
+    public ShoppingFragment(Context context) {
 
     }
 

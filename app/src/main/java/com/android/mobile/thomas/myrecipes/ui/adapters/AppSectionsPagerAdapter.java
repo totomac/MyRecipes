@@ -12,7 +12,7 @@ import com.android.mobile.thomas.myrecipes.ui.fragments.ShoppingFragment;
 /**
  * Created by Thomas on 19/07/2015.
  */
-public class AppSectionsPagerAdapter extends FragmentPagerAdapter {
+/*public class AppSectionsPagerAdapter extends FragmentPagerAdapter {
 
     Context mContext;
 
@@ -70,4 +70,4 @@ public class AppSectionsPagerAdapter extends FragmentPagerAdapter {
 
         return result;
     }
-}
+}*/
