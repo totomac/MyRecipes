@@ -25,9 +25,10 @@ public class Trolley {
 
     public void removeRecipe(Recipe recipe) {
         if (recipe != null) {
-            for (Recipe toCompare : recipeList) {
-                if (recipe.getId() == toCompare.getId()) {
-                    recipeList.remove(toCompare);
+
+            for (int i = recipeList.size() -1; i >= 0; i--) {
+                if (recipe.getId() == recipeList.get(i).getId()) {
+                    recipeList.remove(recipeList.get(i));
                 }
             }
         }
