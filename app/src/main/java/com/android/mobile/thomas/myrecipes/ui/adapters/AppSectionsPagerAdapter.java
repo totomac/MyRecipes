@@ -1,14 +1,5 @@
 package com.android.mobile.thomas.myrecipes.ui.adapters;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.content.Context;
-import android.support.v4.app.FragmentPagerAdapter;
-
-import com.android.mobile.thomas.myrecipes.ui.fragments.IngredientFragment;
-import com.android.mobile.thomas.myrecipes.ui.fragments.LaunchpadSectionFragment;
-import com.android.mobile.thomas.myrecipes.ui.fragments.ShoppingFragment;
-
 /**
  * Created by Thomas on 19/07/2015.
  */

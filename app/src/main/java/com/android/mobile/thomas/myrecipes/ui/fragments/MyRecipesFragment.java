@@ -24,17 +24,17 @@ import java.util.List;
 /**
  * Created by Thomas on 19/07/2015.
  */
-public class LaunchpadSectionFragment extends Fragment {
+public class MyRecipesFragment extends Fragment {
 
     static Context mContext;
     private String TAG = "LaunchpadSectionFragment";
     View rootView;
     RecipesAdapter adapter;
-    private static LaunchpadSectionFragment singleton = new LaunchpadSectionFragment();
+    private static MyRecipesFragment singleton = new MyRecipesFragment();
 
-    public static final LaunchpadSectionFragment newLaunchPadSectionFragment(Context context) {
+    public static final MyRecipesFragment newInstance(Context context) {
 
-        return new LaunchpadSectionFragment();
+        return new MyRecipesFragment();
     }
 
     @Override
@@ -67,10 +67,7 @@ public class LaunchpadSectionFragment extends Fragment {
                                         int position, long id) {
                     // TODO Auto-generated method stub
                     Log.v(TAG, "Click on an item");
-                    Intent intent = new Intent(mContext, DisplayRecipeActivity.class);
-                    intent.putExtra("ID", id);
-                    startActivity(intent);
-
+                    startActivity(DisplayRecipeActivity.getIntentToStartActivity(view.getContext(), id));
                 }
             });
         }
@@ -81,8 +78,7 @@ public class LaunchpadSectionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Intent intentCreate = new Intent(mContext, CreateRecipesActivity.class);
-                startActivity(intentCreate);
+                startActivity(CreateRecipesActivity.getIntentToStartActivity(v.getContext()));
             }
         });
 

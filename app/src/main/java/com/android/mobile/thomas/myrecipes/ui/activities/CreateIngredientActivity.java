@@ -1,6 +1,7 @@
 package com.android.mobile.thomas.myrecipes.ui.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,11 @@ import com.android.mobile.thomas.myrecipes.models.data.Ingredient;
  * Created by Thomas on 19/07/2015.
  */
 public class CreateIngredientActivity extends Activity {
+
+    public static Intent getIntentToStartActivity(Context context) {
+        Intent intent = new Intent(context, CreateIngredientActivity.class);
+        return intent;
+    }
 
     public CreateIngredientActivity() {
 

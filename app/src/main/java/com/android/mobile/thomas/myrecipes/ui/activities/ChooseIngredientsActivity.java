@@ -1,6 +1,7 @@
 package com.android.mobile.thomas.myrecipes.ui.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,9 +25,14 @@ import java.util.List;
  */
 public class ChooseIngredientsActivity extends Activity{
 
-    private final String TAG = "ChooseIngredientsActivity";
+    private final String TAG = "ChooseIngredients";
     ListView viewList;
     protected List<Ingredient> ingredientList;
+
+    public static Intent getStartActivityIntent(Context context) {
+        Intent intent = new Intent(context, ChooseIngredientsActivity.class);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

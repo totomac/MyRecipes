@@ -2,6 +2,8 @@ package com.android.mobile.thomas.myrecipes.ui.activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +23,10 @@ public class VideoActivity extends Activity {
     ProgressDialog pDialog;
     VideoView vidView;
 
+    public static Intent getIntentToStartActivity(Context context) {
+        Intent intent = new Intent(context, VideoActivity.class);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

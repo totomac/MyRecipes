@@ -2,6 +2,7 @@ package com.android.mobile.thomas.myrecipes.ui.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -25,6 +26,13 @@ import com.android.mobile.thomas.myrecipes.utils.Utils;
 public class DisplayRecipeActivity extends Activity {
 
     private final String TAG = "DisplayRecipeActivity";
+    private static final String BUNDLE_ID = "bundle_id";
+
+    public static Intent getIntentToStartActivity(Context context, long id) {
+        Intent intent = new Intent(context, DisplayRecipeActivity.class);
+        intent.putExtra(BUNDLE_ID, id);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

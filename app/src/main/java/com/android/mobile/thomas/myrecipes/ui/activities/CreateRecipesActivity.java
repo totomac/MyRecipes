@@ -2,6 +2,7 @@ package com.android.mobile.thomas.myrecipes.ui.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -41,6 +42,11 @@ public class CreateRecipesActivity extends Activity {
     private String mImage = null;
     private final String TAG = "CreateRecipesActivity";
     private List<Ingredient> mIngredient = new ArrayList<Ingredient>();
+
+    public static Intent getIntentToStartActivity(Context context) {
+        Intent intent = new Intent(context, CreateRecipesActivity.class);
+        return intent;
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
@@ -127,8 +133,7 @@ public class CreateRecipesActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateRecipesActivity.this, ChooseIngredientsActivity.class);
-                startActivityForResult(intent, CHOOSE_INGREDIENT);
+                startActivityForResult(ChooseIngredientsActivity.getStartActivityIntent(v.getContext()), CHOOSE_INGREDIENT);
             }
         });
 		/*

@@ -55,8 +55,7 @@ public class IngredientFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Intent intentCreate = new Intent(mContext, CreateIngredientActivity.class);
-                startActivity(intentCreate);
+                startActivity(CreateIngredientActivity.getIntentToStartActivity(v.getContext()));
             }
         });
 

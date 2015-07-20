@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.android.mobile.thomas.myrecipes.ui.fragments.IngredientFragment;
-import com.android.mobile.thomas.myrecipes.ui.fragments.LaunchpadSectionFragment;
+import com.android.mobile.thomas.myrecipes.ui.fragments.MyRecipesFragment;
 import com.android.mobile.thomas.myrecipes.ui.fragments.ShoppingFragment;
 
 import java.util.List;
@@ -33,13 +33,13 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return LaunchpadSectionFragment.newLaunchPadSectionFragment(context);
+                return MyRecipesFragment.newInstance(context);
             case 1:
                 return IngredientFragment.newIngredientFragment(context);
             case 2:
                 return ShoppingFragment.newInstance(context);
             default:
-                return LaunchpadSectionFragment.newLaunchPadSectionFragment(context);
+                return MyRecipesFragment.newInstance(context);
         }
     }
 }
