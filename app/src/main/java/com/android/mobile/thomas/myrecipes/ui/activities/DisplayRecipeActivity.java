@@ -50,7 +50,7 @@ public class DisplayRecipeActivity extends Activity {
 
         // TODO have to send the object through a bundle instead of using the db over and over again
         Intent intent = getIntent();
-        long id = intent.getLongExtra("ID", -1);
+        long id = intent.getLongExtra(BUNDLE_ID, -1);
 
         Log.v(TAG, "retrieved id value = " + id);
 
