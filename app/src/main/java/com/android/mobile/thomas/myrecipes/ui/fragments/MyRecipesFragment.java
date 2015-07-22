@@ -30,7 +30,6 @@ public class MyRecipesFragment extends Fragment {
     private String TAG = "LaunchpadSectionFragment";
     View rootView;
     RecipesAdapter adapter;
-    private static MyRecipesFragment singleton = new MyRecipesFragment();
 
     public static final MyRecipesFragment newInstance(Context context) {
 
