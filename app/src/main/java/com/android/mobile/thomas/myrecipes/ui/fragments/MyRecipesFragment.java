@@ -30,6 +30,7 @@ public class MyRecipesFragment extends Fragment {
     private String TAG = "LaunchpadSectionFragment";
     View rootView;
     RecipesAdapter adapter;
+    private List<Recipe> recipesList;
 
     public static final MyRecipesFragment newInstance(Context context) {
 
@@ -45,9 +46,8 @@ public class MyRecipesFragment extends Fragment {
         //Utils.copyBDDAction();
 
         Log.v(TAG, "fragment refresh");
-        List<Recipe> recipesList = null;
         RecipePersistence persistence = new RecipePersistence(mContext);
-        recipesList = persistence.getAllRecipes();
+        this.recipesList = persistence.getAllRecipes();
 
 
         Log.v(TAG, "recipeList size retrieved = " + recipesList.size());
@@ -66,7 +66,7 @@ public class MyRecipesFragment extends Fragment {
                                         int position, long id) {
                     // TODO Auto-generated method stub
                     Log.v(TAG, "Click on an item");
-                    startActivity(DisplayRecipeActivity.getIntentToStartActivity(view.getContext(), id));
+                    startActivity(DisplayRecipeActivity.getIntentToStartActivity(view.getContext(), recipesList.get(position)));
                 }
             });
         }

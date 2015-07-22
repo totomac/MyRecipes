@@ -26,11 +26,12 @@ import com.android.mobile.thomas.myrecipes.utils.Utils;
 public class DisplayRecipeActivity extends Activity {
 
     private final String TAG = "DisplayRecipeActivity";
-    private static final String BUNDLE_ID = "bundle_id";
+    private static final String BUNDLE_RECIPE = "bundle_recipe";
+    private Recipe recipe;
 
-    public static Intent getIntentToStartActivity(Context context, long id) {
+    public static Intent getIntentToStartActivity(Context context, Recipe recipe) {
         Intent intent = new Intent(context, DisplayRecipeActivity.class);
-        intent.putExtra(BUNDLE_ID, id);
+        intent.putExtra(BUNDLE_RECIPE, recipe);
         return intent;
     }
 
@@ -50,12 +51,7 @@ public class DisplayRecipeActivity extends Activity {
 
         // TODO have to send the object through a bundle instead of using the db over and over again
         Intent intent = getIntent();
-        long id = intent.getLongExtra(BUNDLE_ID, -1);
-
-        Log.v(TAG, "retrieved id value = " + id);
-
-        RecipePersistence persistence = new RecipePersistence(getApplicationContext());
-        final Recipe recipe = persistence.getRecipeById(id);
+        this.recipe = intent.getParcelableExtra(BUNDLE_RECIPE);
 
         TextView name = (TextView) findViewById(R.id.textViewRecipeDisplayName);
         TextView price = (TextView) findViewById(R.id.textViewRecipeDisplayPrice);

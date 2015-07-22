@@ -114,20 +114,50 @@ public class Recipe implements Parcelable {
         this.mIngredientsList = mIngredientsList;
     }
 
+    protected Recipe(Parcel in) {
+        id = in.readLong();
+        name = in.readString();
+        description = in.readString();
+        price = in.readInt();
+        imageURI = in.readString();
+        if (in.readByte() == 0x01) {
+            mIngredientsList = new ArrayList<Ingredient>();
+            in.readList(mIngredientsList, Ingredient.class.getClassLoader());
+        } else {
+            mIngredientsList = null;
+        }
+    }
+
     @Override
     public int describeContents() {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        // TODO Auto-generated method stub
         dest.writeLong(id);
         dest.writeString(name);
-        dest.writeInt(price);
         dest.writeString(description);
+        dest.writeInt(price);
         dest.writeString(imageURI);
-        dest.writeList(mIngredientsList);
+        if (mIngredientsList == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(mIngredientsList);
+        }
     }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Recipe> CREATOR = new Parcelable.Creator<Recipe>() {
+        @Override
+        public Recipe createFromParcel(Parcel in) {
+            return new Recipe(in);
+        }
+
+        @Override
+        public Recipe[] newArray(int size) {
+            return new Recipe[size];
+        }
+    };
 }
