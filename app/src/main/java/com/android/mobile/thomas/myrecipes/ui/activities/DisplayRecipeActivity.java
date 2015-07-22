@@ -42,14 +42,6 @@ public class DisplayRecipeActivity extends Activity {
 
         setContentView(R.layout.activity_display_recipe);
 
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        // TODO have to send the object through a bundle instead of using the db over and over again
         Intent intent = getIntent();
         this.recipe = intent.getParcelableExtra(BUNDLE_RECIPE);
 
@@ -128,6 +120,14 @@ public class DisplayRecipeActivity extends Activity {
                 startActivity(intent);
             }
         });
+    }
+
+    //TODO finish the activity to dont break the flow, but we shouldnt override this
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        finish();
     }
 
 }
