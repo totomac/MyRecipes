@@ -87,7 +87,7 @@ public class MyRecipesFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.v(TAG, "onResume");
+        //TODO remove it and set a listenner for after creating a recipe
         adapter.notifyDataSetChanged();
     }
 }

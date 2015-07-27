@@ -83,16 +83,6 @@ public class RecipesAdapter extends BaseAdapter {
         }
 
         Trolley trolley = Trolley.getInstance();
-        trolley.displayContent();
-        if (trolley.checkContainsById(mRecipesList.get(position))) {
-            Log.d(TAG, "recipe " + mRecipesList.get(position) + "is contained in the trolley");
-            holder.trolley.setSelected(true);
-            holder.trolley.setImageResource(R.drawable.luggage_trolley_red);
-        } else {
-            Log.d(TAG, "recipe " + mRecipesList.get(position) + "isnt contained in the trolley and trolley size =" + trolley.size());
-        }
-
-
         holder.trolley.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,7 +124,6 @@ public class RecipesAdapter extends BaseAdapter {
 
     private class ViewHolder {
         TextView name;
-        TextView place;
         TextView price;
         ImageView image;
         ImageButton trolley;
