@@ -15,6 +15,7 @@ import com.android.mobile.thomas.myrecipes.R;
 import com.android.mobile.thomas.myrecipes.models.data.Recipe;
 import com.android.mobile.thomas.myrecipes.models.data.Trolley;
 import com.android.mobile.thomas.myrecipes.utils.Utils;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -76,10 +77,19 @@ public class RecipesAdapter extends BaseAdapter {
 
         if (mRecipesList.get(position).getImageUri() != null) {
 
-            Bitmap recipeImage = Utils.convertUritoBitMap(mRecipesList.get(position).getImageUri(), mContext);
-            holder.image.setImageBitmap(recipeImage);
+            Picasso.with(mContext)
+                    .load(mRecipesList.get(position).getImageUri())
+                    .fit()
+                    .centerCrop()
+                    .into(holder.image);
+
         } else {
-            holder.image.setImageResource(R.drawable.ic_action_picture);
+
+            Picasso.with(mContext)
+                    .load(R.drawable.ic_action_picture)
+                    .fit()
+                    .centerCrop()
+                    .into(holder.image);
         }
 
         Trolley trolley = Trolley.getInstance();

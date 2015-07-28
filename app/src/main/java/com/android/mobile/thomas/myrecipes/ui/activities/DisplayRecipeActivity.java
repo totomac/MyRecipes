@@ -19,6 +19,7 @@ import com.android.mobile.thomas.myrecipes.dao.RecipePersistence;
 import com.android.mobile.thomas.myrecipes.models.data.Ingredient;
 import com.android.mobile.thomas.myrecipes.models.data.Recipe;
 import com.android.mobile.thomas.myrecipes.utils.Utils;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by Thomas on 19/07/2015.
@@ -57,8 +58,11 @@ public class DisplayRecipeActivity extends Activity {
         description.setText(recipe.getDescription());
 
         if (recipe.getImageUri() != null) {
-            Bitmap recipeImage = Utils.convertUritoBitMap(recipe.getImageUri(), getApplicationContext());
-            image.setImageBitmap(recipeImage);
+            Picasso.with(this)
+                    .load(recipe.getImageUri())
+                    .fit()
+                    .centerCrop()
+                    .into(image);
         }
 
         Log.v(TAG, "list ingredients size = " + recipe.getmIngredientsList().size());
@@ -121,13 +125,4 @@ public class DisplayRecipeActivity extends Activity {
             }
         });
     }
-
-    //TODO finish the activity to dont break the flow, but we shouldnt override this
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        finish();
-    }
-
 }

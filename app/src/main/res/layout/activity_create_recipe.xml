@@ -2,27 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_marginTop="4px" >
+    android:layout_marginTop="4px"
+    android:orientation="vertical">
 
     <EditText
         android:id="@+id/editTextNameRecipeCreate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:layout_weight="0"
         android:autoText="false"
+        android:ems="10"
         android:hint="Recipe name">
 
         <requestFocus />
     </EditText>
-    
-        <ImageButton
+
+    <ImageButton
         android:id="@+id/buttonPicture"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_weight="0"
-        android:src="@drawable/ic_action_new_picture"/>
+        android:src="@drawable/ic_action_new_picture" />
 
     <Spinner
         android:id="@+id/spinnerPrice"
@@ -32,12 +32,12 @@
 
     <Button
         android:id="@+id/buttonChooseIngredients"
+        style="@style/button_select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ButtonChooseIngredients"
         android:layout_weight="0"
         android:background="@drawable/button_select"
-        style="@style/button_select"/>
+        android:text="@string/ButtonChooseIngredients" />
 
     <TextView
         android:id="@+id/textViewRecipesDisplayed"
@@ -50,18 +50,18 @@
         android:id="@+id/editTextRecipeDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:layout_weight="1"
-        android:inputType="textMultiLine"
-        android:hint="Description" />
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="textMultiLine" />
 
     <Button
         android:id="@+id/buttonValidCreate"
+        style="@style/bottom_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="validate"
         android:layout_weight="0"
         android:background="@drawable/bottom_button"
-        style="@style/bottom_button"/>
+        android:text="validate" />
 
 </LinearLayout>

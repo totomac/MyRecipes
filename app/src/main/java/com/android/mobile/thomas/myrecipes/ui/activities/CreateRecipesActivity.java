@@ -25,6 +25,7 @@ import com.android.mobile.thomas.myrecipes.R;
 import com.android.mobile.thomas.myrecipes.dao.RecipePersistence;
 import com.android.mobile.thomas.myrecipes.models.data.Ingredient;
 import com.android.mobile.thomas.myrecipes.models.data.Recipe;
+import com.squareup.picasso.Picasso;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -72,7 +73,7 @@ public class CreateRecipesActivity extends Activity {
         spinnerPrice.setAdapter(adapter);
 
 		/*
-		 *  Button validate management
+         *  Button validate management
 		 */
         Button validate = (Button) findViewById(R.id.buttonValidCreate);
 
@@ -96,7 +97,7 @@ public class CreateRecipesActivity extends Activity {
 
                 Log.d(TAG, "name = " + name);
 
-                if (name.isEmpty()){
+                if (name.isEmpty()) {
                     Log.d(TAG, "No title");
                     AlertDialog.Builder builder = new AlertDialog.Builder(CreateRecipesActivity.this);
 
@@ -136,7 +137,7 @@ public class CreateRecipesActivity extends Activity {
                 startActivityForResult(ChooseIngredientsActivity.getStartActivityIntent(v.getContext()), CHOOSE_INGREDIENT);
             }
         });
-		/*
+        /*
 		 * *************************************
 		 */
 
@@ -148,7 +149,7 @@ public class CreateRecipesActivity extends Activity {
 
                 //the images can always been charged (permissions) on api 19
                 Intent intent;
-                if (Build.VERSION.SDK_INT < 19){
+                if (Build.VERSION.SDK_INT < 19) {
                     intent = new Intent();
                     intent.setAction(Intent.ACTION_GET_CONTENT);
                     intent.setType("image/*");
@@ -168,9 +169,9 @@ public class CreateRecipesActivity extends Activity {
                                     Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        switch(requestCode) {
+        switch (requestCode) {
             case ANDROID_LESS_19:
-                if(resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     Uri selectedImage = data.getData();
                     mImage = selectedImage.toString();
                     String[] filePathColumn = {MediaStore.Images.Media.DATA};
@@ -183,23 +184,17 @@ public class CreateRecipesActivity extends Activity {
                     String filePath = cursor.getString(columnIndex);
                     cursor.close();
 
-
-                    InputStream imageStream;
-                    try {
-                        imageStream = getContentResolver().openInputStream(selectedImage);
-                        Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
-
-                        ImageButton mealPicture = (ImageButton) findViewById(R.id.buttonPicture);
-                        mealPicture.setImageBitmap(yourSelectedImage);
-                    } catch (FileNotFoundException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+                    ImageButton mealPicture = (ImageButton) findViewById(R.id.buttonPicture);
+                    Picasso.with(this)
+                            .load(selectedImage)
+                            .fit()
+                            .centerCrop()
+                            .into(mealPicture);
                 }
                 return;
 
             case ANDROID_MORE_19:
-                if(resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     Uri selectedImage = data.getData();
                     mImage = selectedImage.toString();
                     String[] filePathColumn = {MediaStore.Images.Media.DATA};
@@ -220,25 +215,19 @@ public class CreateRecipesActivity extends Activity {
                     String filePath = cursor.getString(columnIndex);
                     cursor.close();
 
-
-                    InputStream imageStream;
-                    try {
-                        imageStream = getContentResolver().openInputStream(selectedImage);
-                        Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
-
-                        ImageButton mealPicture = (ImageButton) findViewById(R.id.buttonPicture);
-                        mealPicture.setImageBitmap(yourSelectedImage);
-                    } catch (FileNotFoundException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+                    ImageButton mealPicture = (ImageButton) findViewById(R.id.buttonPicture);
+                    Picasso.with(this)
+                            .load(selectedImage)
+                            .fit()
+                            .centerCrop()
+                            .into(mealPicture);
                 }
                 return;
 
             //TODO
             // please god forgive me (should pass an object as extra instead of just the id)
             case CHOOSE_INGREDIENT:
-                if(resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     //				IngredientPersistence db = new IngredientPersistence(getApplicationContext());
                     //
                     //				Bundle extras = data.getExtras();
@@ -258,7 +247,7 @@ public class CreateRecipesActivity extends Activity {
 
                     mIngredient = data.getParcelableArrayListExtra("arrayList");
 
-                    if(!mIngredient.isEmpty()) {
+                    if (!mIngredient.isEmpty()) {
                         String sIngredients = "";
                         TextView ingredientsField = (TextView) findViewById(R.id.textViewRecipesDisplayed);
                         for (Ingredient ingredient : mIngredient) {
