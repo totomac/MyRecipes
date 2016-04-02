@@ -32,7 +32,7 @@ public class MyRecipesFragment extends Fragment {
     RecipesAdapter adapter;
     private List<Recipe> recipesList;
 
-    public static final MyRecipesFragment newInstance(Context context) {
+    public static final MyRecipesFragment newInstance() {
 
         return new MyRecipesFragment();
     }

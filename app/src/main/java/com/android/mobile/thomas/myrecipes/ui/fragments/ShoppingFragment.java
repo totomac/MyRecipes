@@ -27,18 +27,14 @@ public class ShoppingFragment extends Fragment {
 
 
     //TODO make it a singleton
-    public static ShoppingFragment newInstance(Context context) {
-        return new ShoppingFragment(context);
+    public static ShoppingFragment newInstance() {
+        return new ShoppingFragment();
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-
-    }
-
-    public ShoppingFragment(Context context) {
 
     }
 

@@ -25,7 +25,7 @@ public class IngredientFragment extends Fragment {
 
     Context mContext;
 
-    public static final IngredientFragment newIngredientFragment(Context context) {
+    public static final IngredientFragment newIngredientFragment() {
         IngredientFragment fragment = new IngredientFragment();
         return fragment;
     }

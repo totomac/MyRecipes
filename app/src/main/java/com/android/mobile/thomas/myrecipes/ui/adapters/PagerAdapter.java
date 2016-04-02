@@ -38,13 +38,13 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return MyRecipesFragment.newInstance(context);
+                return MyRecipesFragment.newInstance();
             case 1:
-                return IngredientFragment.newIngredientFragment(context);
+                return IngredientFragment.newIngredientFragment();
             case 2:
-                return ShoppingFragment.newInstance(context);
+                return ShoppingFragment.newInstance();
             default:
-                return MyRecipesFragment.newInstance(context);
+                return MyRecipesFragment.newInstance();
         }
     }
 }
