@@ -1,9 +1,13 @@
 package com.android.mobile.thomas.myrecipes.ui.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,10 +30,11 @@ import java.util.List;
  */
 public class MyRecipesFragment extends Fragment {
 
-    static Context mContext;
-    private String TAG = "LaunchpadSectionFragment";
-    View rootView;
-    RecipesAdapter adapter;
+    private final String TAG = "LaunchpadSectionFragment";
+    public static  final String EXTRA_RECIPE = "extra_recipe";
+    private final int RECIPE_REQUEST = 1;
+
+    private RecipesAdapter adapter;
     private List<Recipe> recipesList;
 
     public static final MyRecipesFragment newInstance() {
@@ -38,56 +43,58 @@ public class MyRecipesFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        mContext = getActivity().getApplicationContext();
-        rootView = inflater.inflate(R.layout.fragment_recipes, container, false);
-
-        //Utils.copyBDDAction();
-
-        Log.v(TAG, "fragment refresh");
-        RecipePersistence persistence = new RecipePersistence(mContext);
-        this.recipesList = persistence.getAllRecipes();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        return inflater.inflate(R.layout.fragment_recipes, container, false);
+    }
 
 
-        Log.v(TAG, "recipeList size retrieved = " + recipesList.size());
-        adapter = new RecipesAdapter(mContext, recipesList);
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        if (recipesList.size() != 0) {
+        RecipePersistence persistence = new RecipePersistence(getActivity());
+        recipesList = persistence.getAllRecipes();
 
 
-            ListView view = (ListView) rootView.findViewById(R.id.listViewRecipes);
-            view.setAdapter(adapter);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.listViewRecipes);
+        recyclerView.setHasFixedSize(true);
 
-            view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        DefaultItemAnimator animator = new DefaultItemAnimator();
+        recyclerView.setItemAnimator(animator);
 
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view,
-                                        int position, long id) {
-                    // TODO Auto-generated method stub
-                    Log.v(TAG, "Click on an item");
-                    startActivity(DisplayRecipeActivity.getIntentToStartActivity(view.getContext(), recipesList.get(position)));
-                }
-            });
-        }
+        final LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(llm);
 
-        Button create = (Button) rootView.findViewById(R.id.buttonGoToCreate);
+        adapter = new RecipesAdapter(getActivity(), recipesList);
+        adapter.setListener(new RecipesAdapter.IRecipesAdapterListener() {
+            @Override
+            public void onItemClicked(Recipe recipe) {
+                startActivity(DisplayRecipeActivity.getIntentToStartActivity(getActivity(), recipe));
+            }
+        });
+        recyclerView.setAdapter(adapter);
+
+        Button create = (Button) view.findViewById(R.id.buttonGoToCreate);
         create.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                startActivity(CreateRecipesActivity.getIntentToStartActivity(v.getContext()));
+                startActivityForResult(CreateRecipesActivity.getIntentToStartActivity(v.getContext()), RECIPE_REQUEST);
             }
         });
-
-        return rootView;
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        //TODO remove it and set a listenner for after creating a recipe
-        adapter.notifyDataSetChanged();
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RECIPE_REQUEST) {
+            if (resultCode == Activity.RESULT_OK) {
+                recipesList.add(data.<Recipe>getParcelableExtra(EXTRA_RECIPE));
+                adapter.notifyItemInserted(adapter.getItemCount());
+            }
+        }
     }
 }

@@ -25,6 +25,7 @@ import com.android.mobile.thomas.myrecipes.R;
 import com.android.mobile.thomas.myrecipes.dao.RecipePersistence;
 import com.android.mobile.thomas.myrecipes.models.data.Ingredient;
 import com.android.mobile.thomas.myrecipes.models.data.Recipe;
+import com.android.mobile.thomas.myrecipes.ui.fragments.MyRecipesFragment;
 import com.squareup.picasso.Picasso;
 
 import java.io.FileNotFoundException;
@@ -122,8 +123,10 @@ public class CreateRecipesActivity extends Activity {
                     RecipePersistence persistence = new RecipePersistence(getApplicationContext());
                     persistence.insert(recipe);
 
-                    Intent intent = new Intent(CreateRecipesActivity.this, NavigationHomeActivity.class);
-                    startActivity(intent);
+                    Intent intent = new Intent();
+                    intent.putExtra(MyRecipesFragment.EXTRA_RECIPE, recipe);
+                    setResult(RESULT_OK, intent);
+                    finish();
                 }
 
             }

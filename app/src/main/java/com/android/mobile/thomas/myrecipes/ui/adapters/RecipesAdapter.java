@@ -1,12 +1,10 @@
 package com.android.mobile.thomas.myrecipes.ui.adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.util.Log;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,7 +12,6 @@ import android.widget.TextView;
 import com.android.mobile.thomas.myrecipes.R;
 import com.android.mobile.thomas.myrecipes.models.data.Recipe;
 import com.android.mobile.thomas.myrecipes.models.data.Trolley;
-import com.android.mobile.thomas.myrecipes.utils.Utils;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -22,56 +19,38 @@ import java.util.List;
 /**
  * Created by Thomas on 19/07/2015.
  */
-public class RecipesAdapter extends BaseAdapter {
+public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder> {
+
+    public interface IRecipesAdapterListener {
+        void onItemClicked(Recipe recipe);
+    }
+
+    private  IRecipesAdapterListener listener;
+
+    public void setListener(IRecipesAdapterListener listener) {
+        this.listener = listener;
+    }
 
     private List<Recipe> mRecipesList;
-    LayoutInflater mInflater;
     Context mContext;
     final String TAG = "RecipesAdapter";
 
     public RecipesAdapter(Context context, List<Recipe> recipesList) {
         this.mRecipesList = recipesList;
-        mInflater = LayoutInflater.from(context);
         mContext = context;
     }
 
     @Override
-    public int getCount() {
-        // TODO Auto-generated method stub
-        return mRecipesList.size();
+    public RecipeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipeitem, parent, false);
+        RecipeViewHolder viewHolder = new RecipeViewHolder(v);
+
+        return viewHolder;
     }
 
     @Override
-    public Object getItem(int position) {
-        // TODO Auto-generated method stub
-        return mRecipesList.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        // TODO Auto-generated method stub
-        return mRecipesList.get(position).getId();
-    }
-
-    @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
-        ViewHolder holder;
-
-        if (convertView==null) {
-            //if the convertView is null, we create it
-            holder = new ViewHolder();
-            convertView = mInflater.inflate(R.layout.recipeitem, null);
-
-            holder.name = (TextView) convertView.findViewById(R.id.textViewNameRecipe);
-            holder.image = (ImageView) convertView.findViewById(R.id.recipe_img);
-            holder.trolley = (ImageButton) convertView.findViewById(R.id.imageButtonTrolley);
-            holder.price = (TextView) convertView.findViewById(R.id.textViewPrice);
-
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
+    public void onBindViewHolder(RecipeViewHolder holder, final int position) {
 
         holder.name.setText(mRecipesList.get(position).getName());
 
@@ -112,6 +91,17 @@ public class RecipesAdapter extends BaseAdapter {
             }
         });
 
+        holder.recipeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onItemClicked(mRecipesList.get(position));
+                }
+            }
+        });
+
+
+
         switch (mRecipesList.get(position).getPrice()) {
             case 0:
                 holder.price.setText(R.string.cheapPrice);
@@ -128,14 +118,27 @@ public class RecipesAdapter extends BaseAdapter {
             default:
                 holder.price.setText(R.string.cheapPrice);
         }
-
-        return convertView;
     }
 
-    private class ViewHolder {
+    @Override
+    public int getItemCount() {
+        return mRecipesList.size();
+    }
+
+    public class RecipeViewHolder extends RecyclerView.ViewHolder {
         TextView name;
         TextView price;
         ImageView image;
         ImageButton trolley;
+        View recipeButton;
+
+        public RecipeViewHolder(View itemView) {
+            super(itemView);
+            name = (TextView) itemView.findViewById(R.id.textViewNameRecipe);
+            image = (ImageView) itemView.findViewById(R.id.recipe_img);
+            trolley = (ImageButton) itemView.findViewById(R.id.imageButtonTrolley);
+            price = (TextView) itemView.findViewById(R.id.textViewPrice);
+            recipeButton = itemView.findViewById(R.id.recipe_item_button);
+        }
     }
 }
